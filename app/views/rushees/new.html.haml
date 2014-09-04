@@ -1,0 +1,23 @@
+.row
+  .col-md-8.col-md-offset-2
+    %h1 Add Rushee
+
+.row
+  .col-md-8.col-md-offset-2
+    = form_for rushee, role: "form" do |f|
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: "form-control"
+      .form-group
+        = f.label :avatar
+        = f.file_field :avatar
+      .form-group
+        = f.label :standing
+        = f.select :standing, options_for_select(Rushee.standings.collect { |s| [s[0].humanize, s[0]] }, selected: rushee.standing), {} , class: "form-control"
+      .form-group
+        = f.label :description
+        %p.help-block
+          This is some more information about the Rushee, such as major, interests, hometown, etc.
+        = f.text_area :description, class: "form-control"
+      .form-group
+
