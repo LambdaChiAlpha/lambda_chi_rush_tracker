@@ -2,7 +2,7 @@
   .col-md-8.col-md-offset-2
     %h1 Add Rushee
 
-    = form_for rushee, role: "form" do |f|
+    = form_for rushee, multipart: true, role: "form" do |f|
       .form-group
         = f.label :name
         = f.text_field :name, class: "form-control"
