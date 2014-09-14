@@ -1,0 +1,23 @@
+.row
+  .col-md-8.col-md-offset-2
+    %h1
+      = rushee.name
+      %span -
+      = rushee.standing.humanize
+
+    .row
+      .col-md-4
+        = image_tag(rushee.avatar.url(:medium))
+      .col-md-4
+        %dl
+          %dt Room
+          %dd= rushee.room
+          %dt Major
+          %dd= rushee.major
+          %dt Standing
+          %dd= rushee.standing
+      .col-md-4
+        %blockquote= rushee.description
+
+    %h2 Notes
+
