@@ -6,5 +6,22 @@
     - rushees.group_by(&:hall).each_slice(2) do |(left_hall, left_rushees), (right_hall, right_rushees)|
       .col-md-4
         %h2= left_hall.humanize
-        - left_rushees.sort_by(&:room_number).each do |rushee|
-          = link_to("#{rushee.room}: #{rushee.name} (#{rushee.major})", rushee)
+        %dl
+        - left_rushees.group_by(&:room).sort_by(&:first).each do |(room, rushees)|
+          %dt= room
+          %dd
+            %ul
+              - rushees.each do |rushee|
+                %li
+                  = link_to("#{rushee.name} (#{rushee.major})", rushee)
+      .col-md-4
+        - if right_hall.present?
+          %h2= right_hall.humanize
+          %dl
+          - right_rushees.group_by(&:room).sort_by(&:first).each do |(room, rushees)|
+            %dt= room
+            %dd
+              %ul
+                - rushees.each do |rushee|
+                  %li
+                    = link_to("#{rushee.name} (#{rushee.major})", rushee)
