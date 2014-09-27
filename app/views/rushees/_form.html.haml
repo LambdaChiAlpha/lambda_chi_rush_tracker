@@ -1,0 +1,26 @@
+= form_for rushee, multipart: true, role: "form" do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+  -# .form-group
+  -#   = f.label :avatar
+  -#   = f.file_field :avatar
+  .form-group
+    = f.label :major
+    = f.text_field :major, class: "form-control"
+  .form-group
+    = f.label :hall
+    = f.select :hall, options_for_select(Rushee.humanized_hall_options, selected: rushee.hall), {}, class: "form-control"
+  .form-group
+    = f.label :room_number
+    = f.number_field :room_number, class: "form-control"
+  .form-group
+    = f.label :standing
+    = f.select :standing, options_for_select(Rushee.humanized_standing_options, selected: rushee.standing), {} , class: "form-control"
+  .form-group
+    = f.label :description
+    %p.help-block
+      This is some more information about the Rushee, such as major, interests, hometown, etc.
+    = f.text_area :description, class: "form-control"
+  .form-group
+    = f.submit class: "btn btn-primary"

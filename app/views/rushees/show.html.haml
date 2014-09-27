@@ -6,9 +6,14 @@
       = rushee.standing.humanize
 
     .row
-      .col-md-4
-        = image_tag(rushee.avatar.url(:medium))
-      .col-md-4
+      .col-md-12
+        = link_to "Edit profile for #{rushee.name}", edit_rushee_path(rushee)
+
+    .row
+      -# .col-md-4
+      -#   = image_tag(rushee.avatar.url(:medium))
+      .col-md-6
+        %h2 General Information
         %dl
           %dt Room
           %dd= rushee.room
@@ -16,8 +21,13 @@
           %dd= rushee.major
           %dt Standing
           %dd= rushee.standing
-      .col-md-4
+      .col-md-6
+        %h2 Description
         %blockquote= rushee.description
 
     %h2 Notes
-
+    = link_to "New Note", new_rushee_note_path(rushee), class: "btn btn-default"
+    - rushee.notes.each do |note|
+      .row
+        .col-md-12
+          = render partial: "notes/note", locals: { note: note }

@@ -11,6 +11,15 @@ class RusheesController < ApplicationController
     render locals: { rushee: Rushee.new }
   end
 
+  def edit
+    render locals: { rushee: Rushee.find(params[:id]) }
+  end
+
+  def update
+    rushee = Rushee.find(params[:id])
+    rushee.update_attributes(rushee_params)
+  end
+
   def create
     rushee = Rushee.create(rushee_params)
     if rushee.errors.full_messages.any?
@@ -27,7 +36,6 @@ class RusheesController < ApplicationController
   private
 
   def rushee_params
-    raise params[:rushee].keys.to_s
     params.require(:rushee).permit(*Rushee::PERMITTED_ATTRIBUTES)
   end
 end

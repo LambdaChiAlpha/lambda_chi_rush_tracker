@@ -1,5 +1,10 @@
-%h1 Rushees
-- rushees.each do |rushee|
-  .row
-    .col-md-8.col-md-offset-2
-      = link_to("#{rushee.name} - #{rushee.major} - #{rushee.room}", rushee)
+.row
+  .col-md-8.col-md-offset-2
+    %h1
+      Rushees
+      %small Displaying #{pluralize(rushees.count, "rushee")}
+    - rushees.group_by(&:hall).each_slice(2) do |(left_hall, left_rushees), (right_hall, right_rushees)|
+      .col-md-4
+        %h2= left_hall.humanize
+        - left_rushees.sort_by(&:room_number).each do |rushee|
+          = link_to("#{rushee.room}: #{rushee.name} (#{rushee.major})", rushee)

@@ -1,0 +1,19 @@
+.row
+  .col-md-8.col-md-offset-2
+    %h1 New Note for #{rushee.name}
+
+    = form_for note, role: "form" do |f|
+      = f.hidden_field :rushee_id
+      .form-group
+        = f.label :submitter
+        = f.text_field :submitter, class: "form-control"
+      .form-group
+        = f.label :content
+        = f.text_area :content, class: "form-control"
+      .form-group
+        .checkbox
+          = f.label :impression, class: "radio" do
+            = f.check_box :impression, {}, :negative, :positive
+            Impression was negative?
+      .form-group
+        = f.submit class: "btn btn-primary"

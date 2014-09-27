@@ -47,9 +47,10 @@ class Rushee < ActiveRecord::Base
   enum standing: POSSIBLE_STANDINGS
   enum hall: POSSIBLE_HALLS
 
+  has_many :notes
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 
-  validates_presence_of :hall, :room_number, :major
+  validates_presence_of :hall, :room_number, :major, :name
 
   def self.humanized_hall_options
     halls.map { |hall, _| [HALL_NAMES[hall.to_sym], hall] }
