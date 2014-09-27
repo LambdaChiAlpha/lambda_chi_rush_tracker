@@ -4,7 +4,7 @@
       Rushees
       %small Displaying #{pluralize(rushees.count, "rushee")}
     - rushees.group_by(&:hall).each_slice(2) do |(left_hall, left_rushees), (right_hall, right_rushees)|
-      .col-md-4
+      .col-md-6
         %h2= left_hall.humanize
         %dl
         - left_rushees.group_by(&:room).sort_by(&:first).each do |(room, rushees)|
@@ -14,7 +14,7 @@
               - rushees.each do |rushee|
                 %li
                   = link_to("#{rushee.name} (#{rushee.major})", rushee)
-      .col-md-4
+      .col-md-6
         - if right_hall.present?
           %h2= right_hall.humanize
           %dl
