@@ -27,6 +27,7 @@ class RusheesController < ApplicationController
   private
 
   def rushee_params
+    raise params[:rushee].keys.to_s
     params.require(:rushee).permit(*Rushee::PERMITTED_ATTRIBUTES)
   end
 end

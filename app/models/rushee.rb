@@ -2,15 +2,11 @@ class Rushee < ActiveRecord::Base
   PERMITTED_ATTRIBUTES = %i{
     name
     avatar
-    avatar_file_name
-    avatar_file_size
-    avatar_content_type
-    avatar_updated_at
-    description
-    standing
-    room_number
-    hall
     major
+    hall
+    room_number
+    standing
+    description
   }
 
   POSSIBLE_STANDINGS = %i{
@@ -53,7 +49,7 @@ class Rushee < ActiveRecord::Base
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 
-  validates_attachment_file_name :avatar, :matches => [/png\Z/, /jpe?g\Z/, /gif\Z/]
+  validates_presence_of :hall, :room_number, :major
 
   def self.humanized_hall_options
     halls.map { |hall, _| [HALL_NAMES[hall.to_sym], hall] }
