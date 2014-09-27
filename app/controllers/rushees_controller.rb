@@ -18,6 +18,7 @@ class RusheesController < ApplicationController
   def update
     rushee = Rushee.find(params[:id])
     rushee.update_attributes(rushee_params)
+    redirect_to rushee
   end
 
   def create
