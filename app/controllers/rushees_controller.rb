@@ -19,7 +19,8 @@ class RusheesController < ApplicationController
     rushee = Rushee.find(params[:id])
     rushee.update_attributes(rushee_params)
     if rushee.errors.any?
-      redirect_to :edit
+      flash[:error] = rushee.errors.full_messages.first
+      redirect_to :back
     else
       redirect_to rushee
     end
