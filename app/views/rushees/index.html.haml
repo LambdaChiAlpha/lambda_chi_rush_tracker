@@ -3,7 +3,7 @@
     %h1
       Rushees
       %small Displaying #{pluralize(rushees.count, "rushee")}
-    - rushees.group_by(&:hall).each_slice(2) do |(left_hall, left_rushees), (right_hall, right_rushees)|
+    - rushees.group_by(&:hall).sort_by(&:first).each_slice(2) do |(left_hall, left_rushees), (right_hall, right_rushees)|
       .col-md-6
         %h2= left_hall.humanize
         %dl
