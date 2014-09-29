@@ -23,7 +23,7 @@
           %dd= rushee.standing
       .col-md-6
         %h2 Description
-        %blockquote= Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(rushee.description)
+        %blockquote= raw Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(escape_html: true)).render(rushee.description)
 
     %h2 Notes
     = link_to "New Note", new_rushee_note_path(rushee), class: "btn btn-default"
