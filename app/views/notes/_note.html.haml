@@ -1,3 +1,3 @@
 %h3 #{note.submitter} - #{note.impression.humanize}
-%blockquote= note.content
+%blockquote= raw Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(escape_html: true)).render(note.content)
 = note.created_at.to_formatted_s(:long)
