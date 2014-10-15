@@ -61,7 +61,7 @@ class Rushee < ActiveRecord::Base
   end
 
   def room
-    "#{humanized_hall} #{room_number}"
+    "#{humanized_hall} #{sprintf("%03d", room_number)}"
   end
 
   def humanized_hall
